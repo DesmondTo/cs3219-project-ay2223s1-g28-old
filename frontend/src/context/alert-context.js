@@ -23,6 +23,7 @@ export function AlertContextProvider(props) {
       severity,
     });
     setIsOpen(true);
+    setTimeout(closeAlertHandler, 5000);
   };
 
   return (
