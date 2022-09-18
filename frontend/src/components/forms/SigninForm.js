@@ -1,3 +1,5 @@
+import { useContext } from 'react';
+
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
@@ -9,6 +11,8 @@ import Typography from '@mui/material/Typography';
 
 import IconTextField from '../inputs/IconTextField';
 import styles from './SigninForm.module.css';
+
+import AlertContext from '../../context/alert-context';
 
 import useInput from '../../hooks/use-input';
 
@@ -39,6 +43,8 @@ function SigninForm() {
     reset: resetPassword,
   } = useInput(isValidPassword);
 
+  const alertCtx = useContext(AlertContext);
+
   let formIsValid = false;
 
   if (usernameIsValid && passwordIsValid) {
@@ -59,13 +65,13 @@ function SigninForm() {
       })
       .catch((err) => {
         if (err.response.status === STATUS_CODE_UNAUTHORIZED) {
-          console.log('Either username or password is wrong');
+          alertCtx.onShow('Either username or password is wrong');
         } else {
-          console.log('Something went wrong, please try again later');
+          alertCtx.onShow('Something went wrong, please try again later');
         }
       });
     if (res && res.status === STATUS_CODE_OK) {
-      console.log('Login successfully');
+      alertCtx.onShow('Login successfully', 'success');
     }
 
     resetUsername();
