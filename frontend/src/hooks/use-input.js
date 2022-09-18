@@ -24,7 +24,7 @@ const useInput = (validateValue) => {
     initialInputState
   );
 
-  const valueIsValid = validateValue(inputState.value);
+  const [valueIsValid, errorHelperText] = validateValue(inputState.value);
   const hasError = !valueIsValid && inputState.isTouched;
 
   const valueChangeHandler = (event) => {
@@ -43,6 +43,7 @@ const useInput = (validateValue) => {
     value: inputState.value,
     isValid: valueIsValid,
     hasError,
+    errorHelperText,
     valueChangeHandler,
     inputBlurHandler,
     reset,

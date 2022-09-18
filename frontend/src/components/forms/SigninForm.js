@@ -29,6 +29,7 @@ function SigninForm() {
     value: usernameValue,
     isValid: usernameIsValid,
     hasError: usernameHasError,
+    errorHelperText: usernameErrorHelperText,
     valueChangeHandler: usernameChangeHandler,
     inputBlurHandler: usernameBlurHandler,
     reset: resetUsername,
@@ -38,6 +39,7 @@ function SigninForm() {
     value: passwordValue,
     isValid: passwordIsValid,
     hasError: passwordHasError,
+    errorHelperText: passwordErrorHelperText,
     valueChangeHandler: passwordChangeHandler,
     inputBlurHandler: passwordBlurHandler,
     reset: resetPassword,
@@ -93,9 +95,15 @@ function SigninForm() {
             label="Email/Username"
             value={usernameValue}
             error={usernameHasError}
+            helperText={
+              usernameHasError && (
+                <Typography>{usernameErrorHelperText}</Typography>
+              )
+            }
             onChange={usernameChangeHandler}
             onBlur={usernameBlurHandler}
             fullWidth
+            required
           />
         </Grid>
         <Grid item xs={12}>
@@ -105,9 +113,15 @@ function SigninForm() {
             type="password"
             value={passwordValue}
             error={passwordHasError}
+            helperText={
+              passwordHasError && (
+                <Typography>{passwordErrorHelperText}</Typography>
+              )
+            }
             onChange={passwordChangeHandler}
             onBlur={passwordBlurHandler}
             fullWidth
+            required
           />
         </Grid>
         <Grid
