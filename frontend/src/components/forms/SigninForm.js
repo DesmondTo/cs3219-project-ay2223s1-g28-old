@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import Grid from '@mui/material/Grid';
 import AccountCircle from '@mui/icons-material/AccountCircle';
@@ -47,6 +47,8 @@ function SigninForm() {
 
   const alertCtx = useContext(AlertContext);
 
+  const navigate = useNavigate();
+
   let formIsValid = false;
 
   if (usernameIsValid && passwordIsValid) {
@@ -74,6 +76,7 @@ function SigninForm() {
       });
     if (res && res.status === STATUS_CODE_OK) {
       alertCtx.onShow('Login successfully', 'success');
+      navigate('/home');
     }
 
     resetUsername();
