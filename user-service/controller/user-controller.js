@@ -1,5 +1,4 @@
 import 'dotenv/config';
-import jwt from 'jsonwebtoken';
 
 import { ormCreateUser as _createUser, authenticateUser, isExistingUser, ormDeleteAccount } from '../model/user-orm.js';
 import { blacklistJwt, generateJwt } from '../model/jwt.js';
