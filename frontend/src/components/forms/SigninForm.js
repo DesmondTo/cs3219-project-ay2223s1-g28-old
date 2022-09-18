@@ -20,7 +20,7 @@ import isValidUsername from '../../validators/username-validator';
 import isValidPassword from '../../validators/password-validator';
 
 import { URL_USER_SVC } from '../../configs';
-import { STATUS_CODE_UNAUTHORIZED, STATUS_CODE_OK } from '../../constants';
+import { STATUS_CODE_OK } from '../../constants';
 
 const SIGNIN_ROUTE = '/signin';
 
