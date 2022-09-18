@@ -68,11 +68,7 @@ function SigninForm() {
         password: passwordValue,
       })
       .catch((err) => {
-        if (err.response.status === STATUS_CODE_UNAUTHORIZED) {
-          alertCtx.onShow('Either username or password is wrong');
-        } else {
-          alertCtx.onShow('Something went wrong, please try again later');
-        }
+        alertCtx.onShow(err.response.data.message);
       });
     if (res && res.status === STATUS_CODE_OK) {
       alertCtx.onShow('Login successfully', 'success');

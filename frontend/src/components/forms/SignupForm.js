@@ -19,7 +19,7 @@ import isValidEmail from '../../validators/email-validator';
 import isValidPassword from '../../validators/password-validator';
 
 import { URL_USER_SVC } from '../../configs';
-import { STATUS_CODE_CONFLICT, STATUS_CODE_CREATED } from '../../constants';
+import { STATUS_CODE_CREATED } from '../../constants';
 
 function SignupForm() {
   const {
@@ -94,12 +94,7 @@ function SignupForm() {
         password: passwordValue,
       })
       .catch((err) => {
-        if (err.response.status === STATUS_CODE_CONFLICT) {
-          alertCtx.onShow('This username already exists');
-        } else {
-          console.log(err.response);
-          alertCtx.onShow('Something went wrong, please try again later');
-        }
+        alertCtx.onShow(err.response.data.message);
       });
     if (res && res.status === STATUS_CODE_CREATED) {
       alertCtx.onShow('Account successfully created', 'success');
