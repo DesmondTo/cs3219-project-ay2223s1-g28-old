@@ -1,14 +1,14 @@
 import bcrypt from 'bcrypt';
 
-import { createUser, deleteAccountByUsername, getUserByUsername } from './repository.js';
+import { createUser, deleteAccountByUsername, getUserByUsername, getUserByEmail } from './repository.js';
 
 const saltRounds = 10;
 
 //need to separate orm functions from repository to decouple business logic from persistence
-export async function ormCreateUser(username, password) {
+export async function ormCreateUser(username, email, password) {
     try {
         bcrypt.hash(password, saltRounds, async function(err, hashedPassword) {
-            const newUser = await createUser({username, password: hashedPassword});
+            const newUser = await createUser({username, email, password: hashedPassword});
             newUser.save();
         });
         return true;
@@ -36,6 +36,12 @@ export async function authenticateUser(username, password) {
 // Checks if username exists in database
 export async function isExistingUser(username) {
     const user = await getUserByUsername(username);
+    return user ? true : false;
+}
+
+// Checks if email exists in database
+export async function isExistingEmail(email) {
+    const user = await getUserByEmail(email);
     return user ? true : false;
 }
 
