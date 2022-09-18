@@ -8,7 +8,7 @@ const saltRounds = 10;
 export async function ormCreateUser(username, email, password) {
     try {
         bcrypt.hash(password, saltRounds, async function(err, hashedPassword) {
-            const newUser = await createUser({username, email, password: hashedPassword});
+            const newUser = await createUser({username, email: email.toLowerCase(), password: hashedPassword});
             newUser.save();
         });
         return true;
