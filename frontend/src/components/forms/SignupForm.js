@@ -90,12 +90,14 @@ function SignupForm() {
     const res = await axios
       .post(URL_USER_SVC, {
         username: usernameValue,
+        email: emailValue,
         password: passwordValue,
       })
       .catch((err) => {
         if (err.response.status === STATUS_CODE_CONFLICT) {
           alertCtx.onShow('This username already exists');
         } else {
+          console.log(err.response);
           alertCtx.onShow('Something went wrong, please try again later');
         }
       });
