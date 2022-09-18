@@ -95,11 +95,7 @@ function SigninForm() {
             label="Email/Username"
             value={usernameValue}
             error={usernameHasError}
-            helperText={
-              usernameHasError && (
-                <Typography>{usernameErrorHelperText}</Typography>
-              )
-            }
+            helperText={usernameHasError && usernameErrorHelperText}
             onChange={usernameChangeHandler}
             onBlur={usernameBlurHandler}
             fullWidth
@@ -113,11 +109,7 @@ function SigninForm() {
             type="password"
             value={passwordValue}
             error={passwordHasError}
-            helperText={
-              passwordHasError && (
-                <Typography>{passwordErrorHelperText}</Typography>
-              )
-            }
+            helperText={passwordHasError && passwordErrorHelperText}
             onChange={passwordChangeHandler}
             onBlur={passwordBlurHandler}
             fullWidth
