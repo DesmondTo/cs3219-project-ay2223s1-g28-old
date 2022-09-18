@@ -21,10 +21,13 @@ export async function ormCreateUser(username, email, password) {
 // Returns the authenticated user, or null if not authenticated
 export async function authenticateUser(username, password) {
     // Check if user exists
-    const user = await getUserByUsername(username);
+    let user = await getUserByUsername(username);
+    user = user ? user : await getUserByEmail(username); // Allow signin using email too
+
     if (!user) {
         return null;
     }
+
     // Check if password is correct
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
