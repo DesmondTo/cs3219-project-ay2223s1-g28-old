@@ -7,7 +7,7 @@ function IconTextField(props) {
   return (
     <Box className={styles.icon_text_field}>
       {props.icon}
-      <TextField {...props}/>
+      <TextField variant='filled' {...props}/>
     </Box>
   );
 }
